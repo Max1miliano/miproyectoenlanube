@@ -1,0 +1,12 @@
+.nav-bar {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+.nav-item:hover {
+    background-color: red;
+    border-radius: 10px;
+}
