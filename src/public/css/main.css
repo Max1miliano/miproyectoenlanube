@@ -1,0 +1,24 @@
+* {
+    font-family: system-ui;
+}
+
+
+.nav-bar {
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    padding: 1rem;
+}
+
+.nav-item {
+    cursor: pointer;
+    padding: 1rem;
+    list-style: none;
+    background: grey;
+    color: white;
+    border-radius: 10px;
+}
+.nav-item:hover {
+    background-color: red;
+    border-radius: 10px;
+}
