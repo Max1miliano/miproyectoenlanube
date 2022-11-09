@@ -1,36 +1,50 @@
 import { Router } from "express";
-import mongoose from "mongoose";
-import usersService from "../models/users.js";
+// import sessionController from '../controllers/session.controller.js';
+import uploader from '../utilsImage.js'
+import passport from "passport";
+import { usersService } from "../services/index.js";
+
 
 const router = Router();
+
 
 //endpoint para mostrar página de registro
 router.get('/register',async(req,res)=>{
     res.render('register');
 })
-
 //endpoint para registrar un usuario
-router.post('/register',async(req,res)=>{
-    const {name,email,password,address,age,phone} = req.body;
-    if(!name||!email||!password||!address||!age||!phone) return res.status(400).send({error:"Incomplete Values"});
-    let newUser = {
-        name,
-        email,
-        password,
-        address,
-        age,
-        phone
-    }
-    try{
-        const userSch = usersService(newUser)
-        userSch.save()
-        res.send({status:"success",payload:userSch})
-    }catch(error){
-        res.status(500).send({status:"error",error})
-        res.status(400).send({status:"error",error})
-    }
+router.post('/register',passport.authenticate('register',{failureRedirect:'/registerfail'}),async (req,res)=>{
+    res.send({status:"success", payload:req.user._id});
+})
+router.get('/registerfail',(req,res)=>{
+    console.log("Something is wrong")
+    res.status(500).send({status:"error",error: req.body})
+})
 
-    // res.send('create user')
+
+
+// Inicia sesion bien pero no se si valida el mail y la contraseña correctamente
+router.get('/login', (req, res) => {
+    res.render('login');
+})
+router.post('/login',passport.authenticate('login',{failureRedirect:'/loginfail'}),async(req,res)=>{
+    req.session.user = {
+        name:req.user.name,
+        email:req.user.email,
+        id:req.user._id
+    }
+    res.send({status:'success',payload:req.session.user})
+})
+router.get('/loginfail',(req,res)=>{
+    res.status(500).send({status:"error",error:"Error in login "})
+})
+
+router.post('/logout', passport.authenticate('logout',{failureRedirect:'/'}), (req, res) => {
+    req.session.destroy(err=>{
+        if(err) return res.send("Couldn't log out try again");
+        else return res.send("Logged out :)");
+    })
+    res.redirect('login');
 })
 
 export default router

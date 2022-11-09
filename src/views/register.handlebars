@@ -1,8 +1,6 @@
 <div>
     <h1>Register</h1>
-    <form id="registerForm">
-        <label>Avatar</label>
-        <input type="file" name="avatar">
+    <form id="registerForm" enctype="multipart/form-data">
         <label>Nombre</label>
         <input name="name">
         <label>Email</label>
@@ -14,10 +12,10 @@
         <label>Edad</label>
         <input type="number" name="age">
         <label>Teléfono</label>
-        <input type="number" name="phoneNumber">
+        <input type="number" name="phone">
         <input type="submit">
     </form>
     
-<a href="/">Volver al inicio</a>
+<a href="/login">Volver al inicio</a>
 </div>
-<script src="js/register.js"></script>
+<script src="/js/register.js"></script>
