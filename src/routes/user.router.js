@@ -39,12 +39,17 @@ router.get('/loginfail',(req,res)=>{
     res.status(500).send({status:"error",error:"Error in login "})
 })
 
-router.post('/logout', passport.authenticate('logout',{failureRedirect:'/'}), (req, res) => {
+
+router.delete('/logout', (req, res) => {
     req.session.destroy(err=>{
         if(err) return res.send("Couldn't log out try again");
         else return res.send("Logged out :)");
     })
-    res.redirect('login');
 })
+
+
+
+
+
 
 export default router

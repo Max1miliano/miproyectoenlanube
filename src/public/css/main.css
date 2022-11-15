@@ -1,24 +1,116 @@
 * {
-    font-family: system-ui;
+    margin: 0;
+    padding: 0;
 }
 
 
-.nav-bar {
+li {
+    list-style: none;
+}
+
+a {
+    list-style: none;
+}
+
+
+/* UTILITITIES CLASSES */
+.xs-padding {
+    padding: .5rem;
+}
+.s-padding {
+    padding: 1rem;
+}
+
+.gridColumnFlow {
     display: grid;
     grid-auto-flow: column;
-    place-items: center;
-    padding: 1rem;
 }
 
-.nav-item {
-    cursor: pointer;
-    padding: 1rem;
-    list-style: none;
-    background: grey;
-    color: white;
-    border-radius: 10px;
+
+.navBar{
+place-content: space-between;
 }
-.nav-item:hover {
-    background-color: red;
+
+.itemsLists {
+gap: 1rem;
+cursor: pointer;
+}
+
+.itemCart:hover {
+    text-decoration: underline;
+}
+
+.usersActions {
+gap: 1rem; 
+cursor: pointer;
+}
+
+#logout {
+    cursor: pointer;
+}
+
+
+.cardsContainer {
+    display: grid;
+    grid-auto-flow: column;
+    place-content: space-around;
+}
+
+.card {
+    width: 200px;
+    height: max-content;
+    display: grid;
+    gap: 1rem;
+    place-items: center;
     border-radius: 10px;
+    background: wheat;
+    padding: 1rem;
+    box-shadow: 0 0 5px grey;
+    transition: all .5s;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 0 0 10px black;
+    transition: all 1s;
+}
+
+.card-image {
+    width: 150px;
+    height: 150px;
+}
+
+.add-cart-button {
+    border-radius: 5px;
+    border: none;
+    background: red;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.add-cart-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    font-weight: 700;
+}
+
+.detailContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.informationValues {
+    grid-auto-columns: max-content;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.itemsCartList {
+    gap: 1rem;
+    place-items: center
+    ;
 }

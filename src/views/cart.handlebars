@@ -1,0 +1,51 @@
+<div>
+   {{> navbar}}
+
+   <h1 class="s-padding">Bienvenido a tu carrito {{this.name}}</h1>
+
+   <div class="detailContainer">
+
+      <div class="cartContainer">
+
+         {{#if cartListItems}}
+         <div id="cart-container-items" class="itemsCartList gridColumnFlow">
+            <li>Producto</li>
+            <li>Cantidad</li>
+            <li>Precio</li>
+            <button class="add-cart-button xs-padding">Borrar</button>
+         </div>
+         {{else}}
+
+         <p>El carrito aún está vacío</p>
+         {{/if}}
+      <button id="buyItems">Enviar solicitud de compra</button>
+      </div>
+
+      <div class="profile-container-items" class="profileContainer">
+         <h4>Tus Datos personales</h4>
+         <div class="informationValues gridColumnFlow">
+            <label>Name</label>
+            <p>{{this.name}}</p>
+         </div>
+         <div class="informationValues gridColumnFlow">
+            <label>Email</label>
+            <p>{{this.email}}</p>
+         </div>
+         <div class="informationValues gridColumnFlow">
+            <label>Age</label>
+            <p>{{this.age}}</p>
+         </div>
+         <div class="informationValues gridColumnFlow">
+            <label>Phone</label>
+            <p>{{this.phone}}</p>
+         </div>
+         <div class="informationValues gridColumnFlow">
+            <label>Address</label>
+            <p>{{this.address}}</p>
+         </div>
+
+      </div>
+   </div>
+</div>
+<script src="/js/logout.js"></script>
+<script src="/js/products.js"></script>
