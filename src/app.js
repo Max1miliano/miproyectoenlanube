@@ -10,7 +10,8 @@ import bodyParser from 'body-parser';
 import __dirname from './utils.js';
 
 import viewsRouter from './routes/views.router.js';
-import usersRouter from './routes/user.router.js';   
+import usersRouter from './routes/user.router.js';
+import adminRouter from './routes/admin.router.js'   
 
 
 const app = express(); 
@@ -31,11 +32,12 @@ app.use(session({
     }),
     resave:false,
     saveUninitialized:false
-}));
+})); 
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json())
-
+ 
 app.use('/', viewsRouter); 
 app.use('/', usersRouter);
+app.use('/admin', adminRouter)

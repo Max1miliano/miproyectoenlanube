@@ -1,0 +1,27 @@
+<div>
+   {{> navbar}}
+   <h1>Bienvenido al admin de tu negocio</h1>
+
+   <h2>Qué vas a hacer?</h2>
+
+   <div>
+      <h3>Agregar un producto a mi negocio</h3>
+      <div>
+         <form id="productForm">
+            <label>Título</label>
+            <input name="title">
+            <label>Precio</label>
+            <input type="number" name="price">
+            <label>Descripción</label>
+            <input name="description">
+            <label>Stock</label>
+            <input name="stock">
+            <label>Imagen</label>
+            <input type="file" name="image">
+            <input type="submit">
+         </form>
+      </div>
+   </div>
+</div>
+
+<script src="/js/addProductToDatabase.js"></script>

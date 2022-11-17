@@ -7,18 +7,22 @@
 
       <div class="cartContainer">
 
-         {{#if cartListItems}}
+         {{#if productListCart}}
          <div id="cart-container-items" class="itemsCartList gridColumnFlow">
-            <li>Producto</li>
-            <li>Cantidad</li>
-            <li>Precio</li>
-            <button class="add-cart-button xs-padding">Borrar</button>
+            {{#each productListCart}}
+            <div>
+               <li>{{this.title}}</li>
+               <li>{{this.price}}</li>
+               <button class="add-cart-button xs-padding">Borrar</button>
+            </div>
+            {{/each}}
          </div>
+
+         <button id="buyItems">Enviar solicitud de compra</button>
          {{else}}
 
          <p>El carrito aún está vacío</p>
          {{/if}}
-      <button id="buyItems">Enviar solicitud de compra</button>
       </div>
 
       <div class="profile-container-items" class="profileContainer">
