@@ -1,20 +1,21 @@
 import cartsModel from "./models/cart.dao.js";
 
 export default class CartsDao {
-    
-    getById = (id) =>{
-        return cartsModel.findOne({_id:id}).lean();
+
+    getById = (id) => {
+        return cartsModel.findOne({ _id: id }).lean();
     }
 
-    getByIdAndPopulate = (id) =>{
-        return cartsModel.findOne({_id:id}).lean().populate('artworks.artwork')
+    save = () => {
+        return cartsModel.create({ products: [] })
     }
 
-    save = () =>{
-        return cartsModel.create({artworks:[]})
-    }
     update = (id,cart) =>{
-        return cartsModel.findByIdAndUpdate(id,{$set:{artworks:cart.artworks}})
+        return cartsModel.findByIdAndUpdate(id,{$set:{products:cart.products}})
     }
-    
+
+    refreshCard = (id, cart) => {
+        return cartsModel.deleteMany({carrito: cart.products})
+    }
+
 }

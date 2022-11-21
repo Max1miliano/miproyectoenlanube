@@ -13,10 +13,9 @@ import viewsRouter from './routes/views.router.js';
 import usersRouter from './routes/user.router.js';
 import adminRouter from './routes/admin.router.js'   
 
-
 const app = express(); 
 const PORT = process.env.PORT || 8080; 
-const server = app.listen(PORT, ()=> {console.log(`Escuchando en el puerot ${PORT}`)})
+const server = app.listen(PORT, ()=> {console.log(`Escuchando en el puerto ${PORT}`)})
 const connection = mongoose.connect('mongodb+srv://maximan:L0quill00@miproyectoenlanube.pno2dra.mongodb.net/miproyectoenlanube?retryWrites=true&w=majority').then(() => console.log('Conectado a mongo')).catch((error) => console.log(error))
  
 app.engine('handlebars',handlebars.engine());
@@ -36,7 +35,7 @@ app.use(session({
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bodyParser.json())
+app.use(bodyParser.json()) 
  
 app.use('/', viewsRouter); 
 app.use('/', usersRouter);

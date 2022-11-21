@@ -1,29 +1,32 @@
-const addToTheCart = document.getElementById('addToCart')
-const addToTheCarrito = document.getElementsByClassName('.add-cart-button')
-// const productForm = document.getElementById('productContainer')
 
-const productTitle = document.getElementById('productTitle').innerText
-const productPrice = document.getElementById('productPrice').innerText
+const cardContainer = document.querySelectorAll('#productContainer')
 
-const productoElegido = {
-    productTitle,
-    productPrice
-}
+cardContainer.forEach(card => {
+    const cadaNodo = card.children
 
-console.log(addToTheCart);
-console.log(addToTheCarrito);
+    const productId = cadaNodo[0].textContent
 
-addToTheCart.addEventListener('click', evt => {
-    evt.preventDefault();
+    const productTitle = cadaNodo[2].textContent
 
-    // let data = new FormData(productoElegido);
-    // productoElegido.forEach((value,key)=>obj[key]=value);
-    console.log(productoElegido);
+    const productPrice = cadaNodo[4].textContent
 
-    fetch('/cartBuy', {
-        method: 'POST',
-        body: productoElegido
-    }).then(result=>result.json()).then(json=>{
-        console.log(json);
+    const productoElegido = {
+        productId,
+        productTitle,
+        productPrice
+    }
+
+    const productButtonAddToCart = cadaNodo[5]
+    productButtonAddToCart.addEventListener('click', evt => {
+
+        fetch('/cart', {
+            method: 'POST',
+            body: JSON.stringify(productoElegido),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then(result => result.json()).then(json => {
+            console.log(json);
+        })
     })
 })

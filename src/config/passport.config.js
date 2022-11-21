@@ -61,7 +61,7 @@ const initializePassport = () => {
 
     passport.use('login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
         if (!email || !password) return done(null, false, { message: "Incomplete values" })
-        let user = await usersService.getUserByEmail(email);
+        let user = await usersService.getUserByEmail(email); 
         if (!user) return done(null, false, { message: "Incorrect credentials" })
         if (!isValidPassword(user, password)) return done(null, false, { message: "Incorrect password" });
         return done(null, user);

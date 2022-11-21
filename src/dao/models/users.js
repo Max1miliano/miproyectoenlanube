@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const collection = 'baseUsers';
 
 const usersSchema = mongoose.Schema({
+    avatar: String,
     name:{
         type: String,
         required: true

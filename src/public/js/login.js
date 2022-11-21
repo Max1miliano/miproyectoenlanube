@@ -16,7 +16,7 @@ form.addEventListener('submit', (evt) => {
             let timerInterval
             Swal.fire({
                 title: 'El usuario o la contraseña son invalidos',
-                timer: 2000,
+                timer: 1500,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()
@@ -55,7 +55,7 @@ form.addEventListener('submit', (evt) => {
                 if (result.dismiss === Swal.DismissReason.timer) {
                     console.log('')
                 }
-                window.location = "http://localhost:8080/"
+                window.location = "http://localhost:8080/" 
             })
         }
     })

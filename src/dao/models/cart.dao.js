@@ -2,17 +2,20 @@ import mongoose from 'mongoose';
 
 const collection = "Carts";
 
-const schema = new mongoose.Schema({
+const schema = new mongoose.Schema({ 
     products: [
         {
-            artwork:{
+            product:{
                 type:mongoose.SchemaTypes.ObjectId,
-                ref:'cartProduct'
+                ref:'Products'
             },
             quantity:{
                 type:Number,
                 default:1
-            }
+            },
+            productId: String,
+            productTitle: String,
+            productPrice: String
         }
     ]
 }) 

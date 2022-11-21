@@ -30,19 +30,13 @@
    </div> --}}
    <div class="cardsContainer">
       {{#each productList}}
-      {{!-- <form id="productContainer" class="card">
-         <img id="productImage" src="{{this.image}}" alt="" class="card-image">
-         <h5 id="productTitle">{{this.title}}</h5>
-         <p id="productDescription">{{this.description}}</p>
-         <p id="productPrice">$ {{this.price}}</p>
-         <input type="submit" class="add-cart-button xs-padding" value="Agregar Al Carrito">
-      </form> --}}
       <div id="productContainer" class="card">
-         <img id="productImage" src="{{this.image}}" alt="" class="card-image">
-         <h5 id="productTitle">{{this.title}}</h5>
-         <p id="productDescription">{{this.description}}</p>
-         <p id="productPrice">$ {{this.price}}</p>
-         <input id="addToCart" type="submit" class="add-cart-button xs-padding" value="Agregar Al Carrito">
+         <span id="productId" class="textCardId" style="display: none;">{{this._id}}</span>
+         <img id="productImage" name="imagen" src="{{this.image}}" alt="" class="card-image">
+         <h5 id="productTitle" name="titulo" class="textCardTitle">{{this.title}}</h5>
+         <p id="productDescription" name="descripcion">{{this.description}}</p>
+         <p id="productPrice" name="precio" class="textCardPrice">{{this.price}}</p>
+         <input type="button" class="add-cart-button xs-padding" value="Agregar Al Carrito">
       </div>
    {{/each}}
    </div>

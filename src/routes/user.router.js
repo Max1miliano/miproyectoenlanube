@@ -18,7 +18,7 @@ router.post('/login',passport.authenticate('login',{failureRedirect:'/loginfail'
 
 // REGISTRO 
 router.post('/register',passport.authenticate('register',{failureRedirect:'/registerfail'}),async (req,res)=>{
-    res.send({status:"success", payload:req.user._id});
+    res.send({status:"success", payload:req.user._id}); 
 })
 
 // LOGOUT 

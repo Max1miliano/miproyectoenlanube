@@ -12,12 +12,11 @@ export default class CartsService {
         return this.dao.getById(cartId);
     }
 
-    getPopulatedCart = cartId =>{
-        return this.dao.getByIdAndPopulate(cartId);
-    }
-
     update = (cartId,cart) =>{
         return this.dao.update(cartId,cart);
     }
-    
+
+    refresListProducts = (cartId,cart) =>{
+        return this.dao.refreshCard(cartId,cart);
+    }
 }
