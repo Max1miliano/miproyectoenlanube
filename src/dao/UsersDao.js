@@ -18,6 +18,10 @@ export default class UsersDao {
         return usersModel.create(user);
     }
 
+    update = (email, user) => {
+        return usersModel.findByIdAndUpdate(email, {role: user.role})
+    }
+
     delete = (email) => {
         return usersModel.deleteOne({ _email:email })
     }

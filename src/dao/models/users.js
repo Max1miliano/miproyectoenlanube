@@ -18,6 +18,11 @@ const usersSchema = mongoose.Schema({
     },
     address:String,
     age:Number,
+    role: {
+        type:String,
+        enum:['user','admin'],
+        default:'user'
+    },
     phone:String,
     cart:{
         type:mongoose.SchemaTypes.ObjectId,

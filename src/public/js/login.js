@@ -12,6 +12,7 @@ form.addEventListener('submit', (evt) => {
             "Content-Type": "application/json"
         }
     }).then(result => result.json()).then(json => {
+        // console.log(json);
         if (json.status == 'ERROR') {
             let timerInterval
             Swal.fire({
@@ -38,7 +39,7 @@ form.addEventListener('submit', (evt) => {
         } else {
             let timerInterval
             Swal.fire({
-                title: 'Iniciando Sesión',
+                title: 'Sesion iniciada con éxito',
                 timer: 1500,
                 timerProgressBar: true,
                 didOpen: () => {

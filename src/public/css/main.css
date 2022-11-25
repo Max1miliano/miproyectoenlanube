@@ -24,6 +24,7 @@ a {
 .gridColumnFlow {
     display: grid;
     grid-auto-flow: column;
+    place-items: center;
 }
 
 
@@ -113,4 +114,10 @@ cursor: pointer;
     gap: 1rem;
     place-items: center
     ;
+}
+
+.imageProfile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

@@ -9,3 +9,15 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default __dirname
+
+import pino from 'pino'
+
+//LOGGERS
+const streams = [
+    { level: 'info', stream: process.stdout },
+    { level: 'error', stream: pino.destination('./pinoerrors.log') },
+    { level: 'warn', stream: pino.destination('./pinowarns.log') }
+]
+export const loggers = pino({}, pino.multistream(streams))
+
+

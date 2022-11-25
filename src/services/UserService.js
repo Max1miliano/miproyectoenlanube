@@ -9,13 +9,17 @@ export default class UserService {
     }
     getUserById = (id) =>{
         return this.dao.getById(id);
-
     }
+    
     getUserByEmail = (email) =>{
         return this.dao.getByEmail(email)
     }
     saveUser = (user) =>{
         return this.dao.save(user);
+    }
+
+    updateUser = (email, user) => {
+        return this.dao.update(email, user)
     }
     
     deleteUserByEmail = (email) =>{

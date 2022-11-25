@@ -1,4 +1,4 @@
-<nav class="navBar gridColumnFlow s-padding">
+{{!-- <nav class="navBar gridColumnFlow s-padding">
    <ul class="itemsLists gridColumnFlow">
       <li class="itemCart">
          <a href="http://localhost:8080/">INICIO</a>
@@ -17,8 +17,28 @@
       <li>
          <button id="logout">Desloguearse</button>
       </li>
+      {{log routes}}
       <li class="itemCart">
          <a href="http://localhost:8080/admin">ADMIN</a>
+      </li>
+
+      <li>
+         <img class="imageProfile" src="{{mandofotodeperfil}}" alt="imagenPerfil">
+      </li>
+   </ul>
+</nav> --}}
+<nav class="navBar gridColumnFlow s-padding">
+   <ul class="itemsLists gridColumnFlow">
+      {{#each routes}}
+      <li class="itemCart">
+         <a href={{this.route}}>{{this.label}}</a>
+      </li>
+      {{/each}}
+      <li>
+         <button id="logout">Desloguearse</button>
+      </li>
+      <li>
+         <img class="imageProfile" src="{{mandofotodeperfil}}" alt="imagenPerfil">
       </li>
    </ul>
 </nav>
