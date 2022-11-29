@@ -1,29 +1,25 @@
 import { productsServices, cartsService } from '../../services/index.js'
 import { loggers } from '../../utils.js'
-import {ROUTES} from '../../constants/routes.js'
+import { ROUTES } from '../../constants/routes.js'
 
-//LOGGERS
 
 
 const home = async (req, res) => {
-    const routes = ROUTES[req.user.role];
-    console.log(routes);
+    const routes = ROUTES[req.user?.role];
     const validator = req.user
-    console.log(validator);
     if (validator) {
         const mandofotodeperfil = req.user.avatar
 
         loggers.info('Sesion iniciada correctamente')
-        res.render('home', { mandofotodeperfil, routes: routes });
+        res.render('home', { mandofotodeperfil, routes: routes, css: '/css/main.css' });
     } else {
         loggers.error('Algo sucedió durante el logeo')
         res.redirect('/login');
     }
-    // res.render('home', {mandofotodeperfil});
 }
 
 const login = async (req, res) => {
-    res.render('login');
+    res.render('login', { css: '/css/main.css' });
 }
 
 const loginfail = async (req, res) => {
@@ -32,7 +28,7 @@ const loginfail = async (req, res) => {
 }
 
 const register = async (req, res) => {
-    res.render('register');
+    res.render('register', { css: '/css/main.css' });
 }
 
 const registerFail = async (req, res) => {
@@ -41,31 +37,36 @@ const registerFail = async (req, res) => {
 }
 
 const products = async (req, res) => {
-    const mandofotodeperfil = req.user.avatar
+    const mandofotodeperfil = req.user?.avatar
     const productList = await productsServices.getProducts()
-    res.render('products', { productList, mandofotodeperfil })
+    const routes = ROUTES[req.user?.role];
+
+    res.render('products', { productList, mandofotodeperfil, css: '/css/main.css', routes: routes })
 }
 
 const cart = async (req, res) => {
-    
+
     const mandofotodeperfil = req.user?.avatar
-    
+
     const userCartId = req.user?.cart._id
     const productsCartId = await cartsService.getCartById(userCartId)
     const productListCart = productsCartId?.products
 
-    const listOfProducts = req.body
+    const routes = ROUTES[req.user?.role];
 
     const validator = req.user
     if (validator) {
-        res.render('cart', { validator, productListCart, mandofotodeperfil });
+        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes });
     } else {
         res.redirect('/login');
     }
 }
 
 const contacto = async (req, res) => {
-    res.render('contact')
+
+    const mandofotodeperfil = req.user?.avatar
+    const routes = ROUTES[req.user?.role];
+    res.render('contact', { mandofotodeperfil, css: '/css/main.css', routes: routes })
 }
 
 export default {

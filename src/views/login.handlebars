@@ -1,14 +1,15 @@
-<h1>HOLA</h1>
-<div>
-    <h1>Inicia sesion</h1>
-    <form id="loginForm">
-        <label>Email</label>
-        <input name="email">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit">
-    </form>
+<div class="loginForm d-grid s-padding">
+    <h1>Welcome!</h1>
+    <div class="formContainer d-grid s-padding">
+        <h2>Iniciar sesion</h2>
+        <form id="loginForm" class="d-grid s-padding">
+            <label>Email</label>
+            <input name="email">
+            <label>Password</label>
+            <input type="password" name="password">
+            <input type="submit">
+        </form>
+        <a href="register" class="formButtonRegister">o registrarse</a>
+    </div>
 </div>
-{{!-- <a href="/api/sessions/google"><button>Entrar con Google</button></a> --}}
-<a href="register">No tienes usuario? Regístrate :)</a>
 <script src="/js/login.js"></script>

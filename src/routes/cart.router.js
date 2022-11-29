@@ -72,5 +72,5 @@ router.post('/cart', cartController.updateCart)
 //     return res.send({ status: 'success', carritovacio: productsCartId })
 // })
 
-router.post('/cartbuy', cartController.generateOrder)
+router.post('/cartBuy', cartController.generateOrder)
 export default router

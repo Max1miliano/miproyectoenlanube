@@ -1,6 +1,5 @@
 const enviarCompra = document.getElementById('buyItems')
 
-console.log(enviarCompra);
 
 enviarCompra.addEventListener('click', () => {
     fetch('/cartBuy', {

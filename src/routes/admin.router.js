@@ -4,7 +4,8 @@ const router = Router()
 
 //ADMIN DE NEGOCIO
 router.get('/',(req, res) => {
-    res.render('admin')
+    const mandofotodeperfil = req.user.avatar
+    res.render('admin', {css: '/css/main.css', mandofotodeperfil})
 })
 
 export default router

@@ -9,7 +9,7 @@ var adminMail = "maxipompas@hotmail.com"
 
 const accountSid = 'AC3c57f0fcd707fa9b7104e4014260d7e2'
 // const authToken = '0aff51c4f3c00e1d196d33293b6afbb6'
-const authToken = '16e9b1b245bea8e061c12d776f41a86d'
+const authToken = '5ede3a8710e4e08776176bcac1337bc1'
 const client = twilio(accountSid, authToken)
 
 

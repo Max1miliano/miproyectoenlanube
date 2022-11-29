@@ -4,8 +4,6 @@ import { createHash, isValidPassword } from "../utils.js";
 import { usersService, cartsService } from '../services/index.js'
 import MailingService from "../services/mailing.js";
 
-
-
 const LocalStrategy = local.Strategy
 const mailer = new MailingService();
 

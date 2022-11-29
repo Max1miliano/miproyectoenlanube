@@ -29,13 +29,16 @@
 </nav> --}}
 <nav class="navBar gridColumnFlow s-padding">
    <ul class="itemsLists gridColumnFlow">
+      <li class="itemCart">
+         <a class="navBarItem" href="http://localhost:8080/">INICIO</a>
+      </li>
       {{#each routes}}
       <li class="itemCart">
-         <a href={{this.route}}>{{this.label}}</a>
+         <a class="navBarItem" href={{this.route}}>{{this.label}}</a>
       </li>
       {{/each}}
-      <li>
-         <button id="logout">Desloguearse</button>
+      <li style="justify-self: end">
+         <button id="logout">Logout</button>
       </li>
       <li>
          <img class="imageProfile" src="{{mandofotodeperfil}}" alt="imagenPerfil">

@@ -1,23 +1,26 @@
-<div>
+<div class="loginForm d-grid s-padding">
     <h1>Register</h1>
-    <form id="registerForm">
-        <label>Avatar</label>
-        <input type="file" name="avatar">
-        <label>Nombre</label>
-        <input name="name">
-        <label>Email</label>
-        <input name="email">
-        <label>Password</label>
-        <input type="password" name="password">
-        <label>Direccion</label>
-        <input type="text" name="address">
-        <label>Edad</label>
-        <input type="number" name="age">
-        <label>Teléfono</label>
-        <input type="number" name="phone">
-        <input type="submit">
-    </form>
 
-    <a href="/login">Volver al inicio</a>
+    <div class="formContainer d-grid s-padding">
+        <form id="registerForm" class="d-grid s-padding" style="gap: 1rem;">
+            <label>Avatar</label>
+            <input type="file" name="avatar">
+            <label>Nombre</label>
+            <input name="name">
+            <label>Email</label>
+            <input name="email">
+            <label>Password</label>
+            <input type="password" name="password">
+            <label>Direccion</label>
+            <input type="text" name="address">
+            <label>Edad</label>
+            <input type="number" name="age">
+            <label>Teléfono</label>
+            <input type="number" name="phone">
+            <input type="submit">
+        </form>
+
+        <a href="/login" class="formButtonRegister">Volver al inicio</a>
+    </div>
 </div>
 <script src="/js/register.js"></script>

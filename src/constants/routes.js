@@ -1,9 +1,6 @@
 export const ROUTES = {
     user: [
-        {
-            route: '/',
-            label: 'Inicio'
-        },
+
         {
             route: '/productos',
             label: 'Productos'
