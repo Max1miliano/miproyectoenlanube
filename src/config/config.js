@@ -13,5 +13,9 @@ export default {
         USER:process.env.MONGO_USER,
         PWD:process.env.MONGO_PWD,
         DB:process.env.MONGO_DATABASE
+    },
+    twillio: {
+        ACT: process.env.TWILIO_ACCOUNT_SID,
+        PWD: process.env.TWILIO_AUTH_TOKEN
     }
 }

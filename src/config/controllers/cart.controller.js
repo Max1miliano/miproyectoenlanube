@@ -1,15 +1,15 @@
 import { cartsService } from "../../services/index.js";
 import MailingService from "../../services/mailing.js";
 import twilio from "twilio";
+import config from "../config.js";
 
 
 const mailer = new MailingService();
 var adminMail = "maxipompas@hotmail.com"
 
 
-const accountSid = 'AC3c57f0fcd707fa9b7104e4014260d7e2'
-// const authToken = '0aff51c4f3c00e1d196d33293b6afbb6'
-const authToken = '5ede3a8710e4e08776176bcac1337bc1'
+const accountSid = config.twillio.ACT
+const authToken = config.twillio.PWD
 const client = twilio(accountSid, authToken)
 
 
