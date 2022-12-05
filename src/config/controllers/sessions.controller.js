@@ -27,7 +27,7 @@ const login = async (req, res) => {
         return res.send({status:"SUCCES",message:'Logueado como administrador'})
     }
 
-    res.send({ status: 'SUCCES', message: 'Logeado como usuario' })
+    res.status(200).send({ status: 'SUCCES', message: 'Logeado como usuario', payload: email})
 }
 
 const register = async (req, res) => {
@@ -75,9 +75,10 @@ const register = async (req, res) => {
         avatar: `${req.protocol}://${req.hostname}:8080/img/${req.file.filename}`
     }
 
+
     const result = await usersService.saveUser(user);
 
-    return res.send({ status: 'SUCCES', message: 'Usuario creado correctamente', usuario: result })
+    return res.send({ status: 'SUCCES', message: 'Usuario creado correctamente', payload: result })
 }
 
 export default {

@@ -41,7 +41,11 @@ const products = async (req, res) => {
     const productList = await productsServices.getProducts()
     const routes = ROUTES[req.user?.role];
 
-    res.render('products', { productList, mandofotodeperfil, css: '/css/main.css', routes: routes })
+    res.render('products', { productList, mandofotodeperfil, css: '/css/main.css', routes: routes, payload: productList })
+}
+const productsViews = async (req, res) => {
+    const productList = await productsServices.getProducts()
+    res.send({ payload: productList })
 }
 
 const cart = async (req, res) => {
@@ -77,5 +81,6 @@ export default {
     register,
     registerFail,
     cart,
-    contacto
+    contacto,
+    productsViews
 }

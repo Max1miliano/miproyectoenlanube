@@ -18,7 +18,7 @@ const authToken = '16e9b1b245bea8e061c12d776f41a86d'
 
 const client = twilio(accountSid, authToken)
 
-
+ 
 // INICIO
 router.get('/', viewsController.home)
 
@@ -32,6 +32,7 @@ router.get('/registerfail', viewsController.registerFail)
 
 // PRODUCTOS 
 router.get('/productos', viewsController.products)
+router.get('/verProductos', viewsController.productsViews)
 
 // CARRITO 
 router.get('/cart', viewsController.cart)
