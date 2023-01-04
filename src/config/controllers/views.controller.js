@@ -11,7 +11,7 @@ const home = async (req, res) => {
         const mandofotodeperfil = req.user.avatar
 
         loggers.info('Sesion iniciada correctamente')
-        res.render('home', { mandofotodeperfil, routes: routes, css: '/css/main.css' });
+        res.render('home', { status: 200, mandofotodeperfil, routes: routes, css: '/css/main.css' });
     } else {
         loggers.error('Algo sucedió durante el logeo')
         res.redirect('/login');
@@ -19,7 +19,7 @@ const home = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    res.render('login', { css: '/css/main.css' });
+    res.render('login', { status: 200, css: '/css/main.css' });
 }
 
 const loginfail = async (req, res) => {

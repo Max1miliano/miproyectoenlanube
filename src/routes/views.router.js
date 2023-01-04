@@ -32,7 +32,6 @@ router.get('/registerfail', viewsController.registerFail)
 
 // PRODUCTOS 
 router.get('/productos', viewsController.products)
-router.get('/verProductos', viewsController.productsViews)
 
 // CARRITO 
 router.get('/cart', viewsController.cart)
