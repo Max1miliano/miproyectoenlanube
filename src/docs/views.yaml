@@ -1,0 +1,170 @@
+components:
+  requestBodies:
+    nuevoProducto:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Titulo del producto
+        price:
+          type: String
+          description: Precio del producto
+        description:
+          type: String
+          description: Descripción del producto
+        stock:
+          type: Number
+          description: Cantidad disponible del producto
+        image:
+          type: String
+          description: Foto del producto
+      example:
+        title: Celular Samgung
+        price: 250000
+        descriptcion: celular ultimo modelo
+        stock: 10
+        image: 1670245991244-celularsamsung.PNG
+    nuevoUsuario:
+       type : object
+       properties: 
+          _id: 
+            type: ObjectId  
+            description: Id autogenerado de mongo
+          avatar: 
+            type: String
+            description: Foto de perfil del usuario
+          name: 
+            type: String
+            description: Nombre del usuario
+          email: 
+            type: String
+            description: Email del usuario
+          password: 
+            type: String 
+            description: Contranseña generada con encriptacion
+          address:
+            type: String
+            description: Direccion del usuario para hacer envios
+          age: 
+            type: Number
+            description: Edad del usuario
+          phone: 
+            type: Number
+            description: Telefono de contacto del usuario
+       example:
+        _id: ObjectId("asz87/393940")
+        avatar: perfil.png
+        name: Maxi
+        email: maxi@mail.com
+        password: $2b$10$qAUhD0jGFKQ6ecXWK8zFDeUVX.LzRbZq6q4dPG2GBk.WTofql2Cny
+        addres: siempreviva123
+        age: 27
+        phone: 123456789
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        title:
+          type: String
+          description: Descripcion que agrega el admin
+        price:
+          type: Number
+          description: Precio del producto
+        image:
+          type: String
+          description: Ruta de la imagen
+        stock: 
+           type: Number
+           description: Cantidad disponible
+      example:
+        _id: ObjectId("asz87/393940")
+        title: Celular Samsung
+        price: 25000
+        description: celular nuevo con camara
+        stock: 10
+    User:
+       type : object
+       properties: 
+          _id: 
+            type: ObjectId  
+            description: Id autogenerado de mongo
+          avatar: 
+            type: String
+            description: Foto de perfil del usuario
+          name: 
+            type: String
+            description: Nombre del usuario
+          email: 
+            type: String
+            description: Email del usuario
+          password: 
+            type: String 
+            description: Contranseña generada con encriptacion
+          address:
+            type: String
+            description: Direccion del usuario para hacer envios
+          age: 
+            type: Number
+            description: Edad del usuario
+          phone: 
+            type: Number
+            description: Telefono de contacto del usuario
+       example:
+        _id: ObjectId("asz87/393940")
+        avatar: perfil.png
+        name: Maxi
+        email: maxi@mail.com
+        password: $2b$10$qAUhD0jGFKQ6ecXWK8zFDeUVX.LzRbZq6q4dPG2GBk.WTofql2Cny
+        addres: siempreviva123
+        age: 27
+        phone: 123456789
+
+paths:
+  /:
+    get: 
+      summary: Muestra el home si el usuario está logueado en el sitio
+      tags:
+        - Home
+  /login:
+    get:
+      summary: Muestra la visa para que el usuario puedea entrar al sitio
+      tags:
+        - Login
+  /register:
+    get:
+      summary: Muestra la vista para que el usuario se registre
+      tags:
+        - Register
+      responses:
+        "200":
+          description: El usuario puede registrarse en el sitio
+    post:
+      summary: El usuario se registra en el sitio
+      tags:
+        - New user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/nuevoUsuario"
+      responses:
+        "200":
+          description: "El usuario se registró correctamente"
+        "302":
+          description: "El usuario ya existía en la base de datos o se enviaron campos incompletos"
+        "400":
+          description: "Datos mal ingresados"
+  /productos:
+    get:
+      summary: Muestra los productos cargados por el admin
+      tags:
+        - Productos
+  /cart:
+    get:
+      summary: Muestra los productos que el usuario agrego a su carrito
+      tags:
+        - Carrito

@@ -52,6 +52,10 @@ const cart = async (req, res) => {
 
     const mandofotodeperfil = req.user?.avatar
 
+    const datosDelUsuario = req.user
+
+    console.log(datosDelUsuario);
+
     const userCartId = req.user?.cart._id
     const productsCartId = await cartsService.getCartById(userCartId)
     const productListCart = productsCartId?.products
@@ -60,7 +64,7 @@ const cart = async (req, res) => {
 
     const validator = req.user
     if (validator) {
-        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes });
+        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes, datosDelUsuario });
     } else {
         res.redirect('/login');
     }

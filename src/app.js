@@ -17,6 +17,12 @@ import usersRouter from './routes/user.router.js';
 import productsRouter from './routes/products.router.js'
 import cartRouter from './routes/cart.router.js'
 
+
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express';
+
+
+
 const app = express(); 
 const PORT = process.env.PORT || 8080; 
 const server = app.listen(PORT, ()=> {loggers.info(`Conectado al puerto ${PORT}`)})
@@ -38,9 +44,24 @@ app.use(session({
     saveUninitialized:false
 })); 
 initializePassport();
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(bodyParser.json()) 
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+app.use(bodyParser.json())  
+
+const swaggerOptions = {
+    definition:{
+        openapi:'3.0.3',
+        info: {
+            title: "Documentacion de API de Maxi",
+            description: "Documentación de las rutas y metodos"   
+        }
+    },
+    apis:[`${__dirname}/docs/**/*.yaml`]  
+} 
+
+const specs = swaggerJsdoc(swaggerOptions); 
+
+app.use('/documentacionApi',swaggerUiExpress.serve,swaggerUiExpress.setup(specs))
 
 app.use('/admin', adminRouter)
 app.use('/', viewsRouter); 
