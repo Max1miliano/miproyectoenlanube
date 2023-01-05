@@ -20,6 +20,10 @@ import cartRouter from './routes/cart.router.js'
 
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
+import { ApolloServer } from 'apollo-server-express';
+
+import typeDefs from './graphql/typeDefs.js';
+import resolvers from './graphql/resolvers.js';
 
 
 
@@ -67,4 +71,12 @@ app.use('/admin', adminRouter)
 app.use('/', viewsRouter); 
 app.use('/', usersRouter);
 app.use('/', productsRouter)
-app.use('/', cartRouter)
+app.use('/', cartRouter) 
+
+const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers
+})
+await apolloServer.start()
+
+apolloServer.applyMiddleware({app})

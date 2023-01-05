@@ -22,6 +22,10 @@ const productsSchema = mongoose.Schema({
     stock: {
         type: Number,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
     }
 },{timestamps:true})
 

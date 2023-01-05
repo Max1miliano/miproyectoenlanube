@@ -94,8 +94,9 @@ body {
 
 .cardsContainer {
     display: grid;
-    grid-auto-flow: column;
-    place-content: space-around;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1rem;
+    place-items: center
 }
 
 .card {
@@ -222,4 +223,10 @@ input[type="submit"]:hover {
     background-color: #d0bdf4;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.main-container {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
 }

@@ -18,6 +18,10 @@ export const ROUTES = {
         {
             route: '/admin',
             label: 'Admin de negocios'
+        },
+        {
+            route: '/productos',
+            label: 'Productos'
         }
     ]
 }
