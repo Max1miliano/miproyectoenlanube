@@ -10,14 +10,17 @@
             <label>Email</label>
             <input name="email">
             <label>Password</label>
-            <input type="password" name="password">
+            <input type="password" name="password" id="firstPassword">
+            <label>Confirmar password</label>
+            <input type="password" name="confirmPassword" id="secondPassword">
+            <span id="validationText" class="hidden">* los passwords no coiciden</span>
             <label>Direccion</label>
             <input type="text" name="address">
             <label>Edad</label>
             <input type="number" name="age">
             <label>Teléfono</label>
             <input type="number" name="phone">
-            <input type="submit">
+            <input type="submit" id="submitButton">
         </form>
 
         <a href="/login" class="formButtonRegister">Volver al inicio</a>

@@ -1,9 +1,22 @@
 export const ROUTES = {
     user: [
-
         {
-            route: '/productos',
-            label: 'Productos'
+            route: '/',
+            label: 'Inicio'
+        },
+        { 
+            route: '/',
+            label: 'Categorías',
+            subRoutes: [
+                {
+                    route: '/categorias/tecnologia',
+                    label: 'Tecnología'
+                },
+                {
+                    route: '/categorias/indumentaria',
+                    label: 'Indumentaria'
+                }
+            ]
         },
         {
             route: '/contacto',

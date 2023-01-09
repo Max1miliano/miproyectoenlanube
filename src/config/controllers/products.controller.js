@@ -26,13 +26,12 @@ const deleteProduct = async(req, res) => {
 }
 
 const updateProduct = async(req, res) => {
-    // if(!req.file) return res.status(500).send({status:"error",error:'Error al cargar imagen'});
    const { idProduct, title, price, description, category, stock } = req.body
     const productBase = await productsServices.getProductsById(idProduct)
     console.log(productBase);
     
     const product = {
-        idProduct,
+        idProduct: idProduct,
         title: title == '' ? productBase[0].title : title,
         price: price == '' || price == null ? productBase[0].price : price,
         description: description == '' ? productBase[0].description : description,

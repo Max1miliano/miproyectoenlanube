@@ -7,7 +7,6 @@ import MailingService from "../services/mailing.js";
 const LocalStrategy = local.Strategy
 const mailer = new MailingService();
 
-
 var adminMail = "maxipompas@hotmail.com"
 
 const initializePassport = () => {

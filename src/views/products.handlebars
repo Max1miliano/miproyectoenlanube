@@ -1,10 +1,13 @@
 <div>
    {{> navbar}}
    <div class="main-container">
-      <h1>Un poco de nuestros productos</h1>
+      {{#if productList}}
+      <h1>Listado de productos en {{this.category}}</h1>
+      {{/if}}
+      <h1>Listado de productos en {{this.category}}</h1>
 
       <div class="cardsContainer">
-         {{#each productList}}
+         {{#each productList }}
          <div id="productContainer" class="card">
             <span id="productId" class="textCardId">{{this._id}}</span>
             <img id="productImage" name="imagen" src="{{this.image}}" alt="" class="card-image">

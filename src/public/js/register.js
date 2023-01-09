@@ -1,16 +1,34 @@
 const form = document.getElementById('registerForm');
 
-form.addEventListener('submit',evt=>{
+const elementPassword = document.getElementById('secondPassword')
+
+elementPassword.addEventListener("keyup", () => {
+    const firstPassword = document.getElementById('firstPassword').value
+    const secondPassword = document.getElementById('secondPassword').value
+    const submitButton = document.getElementById('submitButton')
+
+    if (firstPassword != secondPassword) {
+        document.getElementById('validationText').style.display = 'block';
+        document.getElementById('validationText').style.color = 'red';
+        submitButton.disabled = true
+        submitButton.style.opacity = '0.4'
+        submitButton.style.cursor = 'not-allowed'
+    } else {
+        document.getElementById('validationText').style.display = 'none';
+        submitButton.disabled = false
+        submitButton.style.opacity = '1'
+        submitButton.style.cursor = 'pointer'
+    }
+})
+
+form.addEventListener('submit', evt => {
     evt.preventDefault();
     let data = new FormData(form);
-    // let obj = {};
-    // data.forEach((value,key)=>obj[key]=value);
-    // console.log(obj);
-    fetch('/register',{
-        method:'POST',
-        body:data
-    }).then(result=>result.json()).then(json=>{
-   
+    fetch('/register', {
+        method: 'POST',
+        body: data
+    }).then(result => result.json()).then(json => {
+
         console.log(json);
         if (json.status == 'ERROR') {
             Swal.fire({
@@ -49,7 +67,6 @@ form.addEventListener('submit',evt=>{
                 window.location = "http://localhost:8080/login"
             })
         }
-        
+
     });
-   
 })

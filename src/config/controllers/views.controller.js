@@ -9,9 +9,10 @@ const home = async (req, res) => {
     const validator = req.user
     if (validator) {
         const mandofotodeperfil = req.user.avatar
-
+        const productList = await productsServices.getProducts()
+ 
         loggers.info('Sesion iniciada correctamente')
-        res.render('home', { status: 200, mandofotodeperfil, routes: routes, css: '/css/main.css' });
+        res.render('home', { status: 200, mandofotodeperfil, routes: routes, css: '/css/main.css', payload: productList, productList });
     } else {
         loggers.error('Algo sucedió durante el logeo')
         res.redirect('/login');
@@ -46,6 +47,15 @@ const products = async (req, res) => {
 const productsViews = async (req, res) => {
     const productList = await productsServices.getProducts()
     res.send({ payload: productList })
+}
+
+const categorys = async (req, res) => {
+    const categoryParam = req.params.categoria
+    const productList = await productsServices.getProductsByCategory(categoryParam)
+    // const productList = productListObject[0]
+    const mandofotodeperfil = req.user?.avatar
+    const routes = ROUTES[req.user?.role];
+    res.render('productsByCategory', {productList, routes: routes, css: '/css/main.css', mandofotodeperfil})
 }
 
 const cart = async (req, res) => {
@@ -86,5 +96,6 @@ export default {
     registerFail,
     cart,
     contacto,
-    productsViews
+    productsViews,
+    categorys
 }

@@ -1,12 +1,16 @@
 
 <nav class="navBar gridColumnFlow s-padding">
    <ul class="itemsLists gridColumnFlow">
-      <li class="itemCart">
-         <a class="navBarItem" href="http://localhost:8080/">INICIO</a>
-      </li>
       {{#each routes}}
-      <li class="itemCart">
+      <li class="itemCart" id="itemCart">
          <a class="navBarItem" href={{this.route}}>{{this.label}}</a>
+         {{#if this.subRoutes}}
+         <div class="categoryListContainer" id="categoryListContainer">
+            {{#each this.subRoutes}}
+           <a class="categoryItem"href={{this.route}}>{{this.label}}</a>
+         {{/each}}
+         </div>
+         {{/if}}
       </li>
       {{/each}}
       <li style="justify-self: end">

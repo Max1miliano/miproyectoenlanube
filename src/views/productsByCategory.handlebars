@@ -1,11 +1,10 @@
 <div>
    {{> navbar}}
-   <h1>Bienvenido al home</h1>
    <div class="main-container">
-      <h1>Nuestro productos</h1>
+      <h1>Listado de productos en {{this.category}}</h1>
 
       <div class="cardsContainer">
-         {{#each productList}}
+         {{#each productList }}
          <div id="productContainer" class="card">
             <span id="productId" class="textCardId">{{this._id}}</span>
             <img id="productImage" name="imagen" src="{{this.image}}" alt="" class="card-image">
@@ -18,5 +17,4 @@
       </div>
    </div>
 </div>
-<script src="/js/logout.js"></script>
 <script src="/js/products.js"></script>

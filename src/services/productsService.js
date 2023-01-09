@@ -9,6 +9,11 @@ export default class ProductsServices {
         return result.map(product => product.toObject())
     }
 
+    getProductsByCategory = async(category) => {
+        let result = await this.dao.getByCategory(category)
+        return result.map(product => product.toObject())
+    }
+
     getProductsById = async(id) => {
         let result = await this.dao.getById(id)
         return result

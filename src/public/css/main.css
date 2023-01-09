@@ -19,6 +19,7 @@ li {
 
 a {
     list-style: none;
+    text-decoration: none;
 }
 
 body {
@@ -38,6 +39,10 @@ body {
 
 .d-grid {
     display: grid;
+}
+
+.hidden {
+    display: none;
 }
 
 
@@ -68,7 +73,24 @@ body {
     width: 100vw
 }
 
+.categoryListContainer {
+    display: none;
+}
+
 .itemCart:hover {
+    text-decoration: underline;
+}
+.itemCart:hover div{    
+    display: grid;
+    gap: 0.5rem;
+    position: absolute;
+    background: #E5EAF5;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px #a0d2eb;
+}
+
+.categoryItem:hover {
     text-decoration: underline;
 }
 
