@@ -11,7 +11,7 @@ export default class ProductsServices {
 
     getProductsById = async(id) => {
         let result = await this.dao.getById(id)
-        return result.toObject()
+        return result
     }
 
     createProducts = product => {
@@ -20,5 +20,9 @@ export default class ProductsServices {
 
     updateProduct = (id, product) => {
         return this.dao.update(id, product)
+    }
+
+    deleteProductById = (id) => {
+        return this.dao.delete(id)
     }
 }

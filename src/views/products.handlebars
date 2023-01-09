@@ -6,7 +6,7 @@
       <div class="cardsContainer">
          {{#each productList}}
          <div id="productContainer" class="card">
-            <span id="productId" class="textCardId" style="display: none;">{{this._id}}</span>
+            <span id="productId" class="textCardId">{{this._id}}</span>
             <img id="productImage" name="imagen" src="{{this.image}}" alt="" class="card-image">
             <h5 id="productTitle" name="titulo" class="textCardTitle">{{this.title}}</h5>
             <p id="productDescription" name="descripcion">{{this.description}}</p>

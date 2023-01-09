@@ -6,7 +6,7 @@ export default class ProductosDao {
         return productsModel.find()
     }
 
-    getById = () => {
+    getById = (id) => {
         return productsModel.find({_id:id})
     }
 
@@ -16,5 +16,9 @@ export default class ProductosDao {
 
     update = (id, product) => {
         return productsModel.findByIdAndUpdate(id, {$set: product})
+    }
+
+    delete = (id) => {
+        return productsModel.deleteOne(id)
     }
 }

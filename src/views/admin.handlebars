@@ -24,6 +24,38 @@
          </form>
       </div>
    </div>
+   <div>
+      <h3>Borrar un producto de mi negocio</h3>
+      <div>
+         <form id="deleteProduct">
+            <label>Id del producto</label>
+            <input type="text" name="idProduct" placeholder="Id de base de datos">
+            <input type="submit" value="Borrar producto">
+         </form>
+      </div>
+   </div>
+   <div>
+      <h3>Modificar un producto de mi negocio</h3>
+      <div>
+         <form id="updateProductForm">
+            <label>Id del producto</label>
+            <input type="text" name="idProduct">
+            <label>Título</label>
+            <input name="newTitle">
+            <label>Precio</label>
+            <input type="number" name="newPrice">
+            <label>Descripción</label>
+            <input name="newDescription">
+            <label>Categoría</label>
+            <input name="newCategory">
+            <label>Stock</label>
+            <input name="newStock">
+            <label>Imagen</label>
+            <input type="file" name="newImage">
+            <input type="submit">
+         </form>
+      </div>
+   </div>
 </div>
 
 <script src="/js/addProductToDatabase.js"></script>
