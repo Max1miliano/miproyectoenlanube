@@ -16,15 +16,13 @@ const client = twilio(accountSid, authToken)
 const updateCart = async (req, res) => {
 
     const userCartId = req.user.cart._id
-    console.log(userCartId);
     const productsCartId = await cartsService.getCartById(userCartId)
     const productListCart = productsCartId?.products
     const elemento = req.body
-    console.log(productsCartId);
     const nuevoItemAlCarro = productListCart.push(elemento)
 
     await cartsService.update(userCartId, productsCartId)
-
+ 
     return res.send({ status: 'success', payload: elemento, carrito: productsCartId })
 }
 
@@ -51,6 +49,7 @@ const generateOrder = async (req, res) => {
         subject: `Nuevo pedido de ${userInformation.name}`,
         html: `<div>
             <h1>Nuevo pedido</h1></br>
+            <h3>Estado de la orden: Generada</h3></br>
             <h3>Nombre: ${userInformation.name}</h3></br>
             <h3>Email: ${userInformation.email}</h3></br>
             <h3>Direccion: ${userInformation.address}</h3></br>
@@ -58,17 +57,6 @@ const generateOrder = async (req, res) => {
             <h1>Lista de productos:</h1>
             <ul>${cadaElemento}</ul>
             </div>`            })
-
-    const option = await client.messages.create({
-        body: `
-        Nuevo pedido
-        Nombre: ${userInformation.name}
-        Email: ${userInformation.email}
-        Telefono: ${userInformation.phone}
-        Id del Carrito. ${userCartId}`,
-        from: 'whatsapp:+14155238886',
-        to: 'whatsapp:+5491160332587'
-    })
 
     productsCartId.products = []
     
@@ -78,7 +66,33 @@ const generateOrder = async (req, res) => {
     return res.send({ status: 'success', carritovacio: productsCartId })
 }
 
+const deleteProductFromCart = async (req, res) => {
+
+    // me traigo el carrito del user 
+    const userCartId = req.user.cart._id
+    const metraigoelcarrito = await cartsService.getCartById(userCartId)
+
+    const itemIdToDeleteFromCart = req.body.data
+    const arraydeproducts = metraigoelcarrito?.products
+    
+    // arraydeproducts.forEach(element => {
+    //     console.log(element.productTitle);
+    // })
+    const arraysinelproducto = arraydeproducts.filter(element => element._id != itemIdToDeleteFromCart)
+    console.log(arraysinelproducto);
+    console.log(metraigoelcarrito);
+
+    const newCart = {
+        _id: userCartId,
+        products: arraysinelproducto
+    }
+    // console.log(itemIdToDeleteFromCart);
+    await cartsService.update(userCartId, newCart)
+    return res.send({ status: 'success', payload: arraysinelproducto, carrito: metraigoelcarrito })
+}
+
 export default {
     updateCart,
-    generateOrder
+    generateOrder,
+    deleteProductFromCart
 }

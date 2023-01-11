@@ -176,6 +176,7 @@ body {
 .itemsCartList {
     gap: 1rem;
     place-items: center;
+    grid-auto-flow: row
 }
 
 .imageProfile {
@@ -251,4 +252,30 @@ input[type="submit"]:hover {
     display: grid;
     gap: 1rem;
     padding: 1rem;
+}
+
+.cartItem {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    place-items: center;
+}
+.cartContainer {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+}
+
+.detailProductContainer {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 50px 50px 50px;
+    place-items: center start;
+    padding: 1rem;
+    column-gap: 1rem;
+}
+.detailProductContainer img {
+    width: 100%;
+    height: 100%;
+    grid-area: 1/1/4/2;
+    border-radius: 5px;
 }

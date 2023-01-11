@@ -1,13 +1,5 @@
+
 const logout = document.getElementById('logout');
-
-// const categoryslist = document.getElementById('itemCart')
-// // const categoryContainer = document.getElementById('categoryListContainer')
-// console.log(categoryslist);
-// // console.log(categoryContainer);
-
-// categoryslist.addEventListener("pointerover", () => {
-//     document.getElementById('categoryListContainer').style.display = 'grid'
-// })
 
 logout.addEventListener('click', (evt) => {
     evt.preventDefault();

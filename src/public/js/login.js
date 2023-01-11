@@ -56,7 +56,7 @@ form.addEventListener('submit', (evt) => {
                 if (result.dismiss === Swal.DismissReason.timer) {
                     console.log('')
                 }
-                window.location = "http://localhost:8080/productos" 
+                window.location = "http://localhost:8080/" 
             })
         }
     })

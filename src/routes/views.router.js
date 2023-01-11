@@ -2,6 +2,7 @@ import { Router } from "express";
 const router = Router();
 import twilio from "twilio";
 import viewsController from '../config/controllers/views.controller.js'
+import { cartsService } from "../services/index.js";
 
 
 
@@ -15,7 +16,7 @@ const client = twilio(accountSid, authToken)
  
 // INICIO
 router.get('/', viewsController.home)
-
+ 
 // LOGIN 
 router.get('/login', viewsController.login)
 router.get('/loginfail', viewsController.loginfail)
@@ -26,6 +27,9 @@ router.get('/registerfail', viewsController.registerFail)
 
 // PRODUCTOS 
 router.get('/productos', viewsController.products)
+router.get('/productos/:id', viewsController.viewProductsById)  
+
+
 router.get('/categorias/:categoria', viewsController.categorys)
 
 // CARRITO 

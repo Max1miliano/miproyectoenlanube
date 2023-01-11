@@ -1,6 +1,7 @@
 import { productsServices, cartsService } from '../../services/index.js'
 import { loggers } from '../../utils.js'
 import { ROUTES } from '../../constants/routes.js'
+import { all } from 'axios';
 
 
 
@@ -10,7 +11,7 @@ const home = async (req, res) => {
     if (validator) {
         const mandofotodeperfil = req.user.avatar
         const productList = await productsServices.getProducts()
- 
+
         loggers.info('Sesion iniciada correctamente')
         res.render('home', { status: 200, mandofotodeperfil, routes: routes, css: '/css/main.css', payload: productList, productList });
     } else {
@@ -42,7 +43,20 @@ const products = async (req, res) => {
     const productList = await productsServices.getProducts()
     const routes = ROUTES[req.user?.role];
 
-    res.render('products', { productList, mandofotodeperfil, css: '/css/main.css', routes: routes, payload: productList })
+    res.render('products', { productList, mandofotodeperfil, css: '/css/main.css', routes: routes })
+}
+  
+const viewProductsById = async (req, res) => {  
+    const routes = ROUTES[req.user?.role];  
+    const mandofotodeperfil = req.user?.avatar
+    const idParam = req.params.id
+    const productById = await productsServices.getProductsById(idParam)
+    const prodobj = productById[0]
+    console.log(productById);  
+    console.log(prodobj);    
+
+
+    res.render('productDetail', { prodobj, css: '/css/main.css', mandofotodeperfil, routes: routes })
 }
 const productsViews = async (req, res) => {
     const productList = await productsServices.getProducts()
@@ -55,26 +69,30 @@ const categorys = async (req, res) => {
     // const productList = productListObject[0]
     const mandofotodeperfil = req.user?.avatar
     const routes = ROUTES[req.user?.role];
-    res.render('productsByCategory', {productList, routes: routes, css: '/css/main.css', mandofotodeperfil})
+    res.render('productsByCategory', { productList, routes: routes, css: '/css/main.css', mandofotodeperfil })
 }
 
-const cart = async (req, res) => {
-
+const cart = async (req, res) => { 
+ 
     const mandofotodeperfil = req.user?.avatar
 
     const datosDelUsuario = req.user
-
-    console.log(datosDelUsuario);
 
     const userCartId = req.user?.cart._id
     const productsCartId = await cartsService.getCartById(userCartId)
     const productListCart = productsCartId?.products
 
     const routes = ROUTES[req.user?.role];
+    const convertDataUser = datosDelUsuario.toObject()
+
+    const createdate = new Date()
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    console.log(createdate.toLocaleDateString('es-ES', options));
+    const date = createdate.toLocaleDateString('es-ES', options)
 
     const validator = req.user
     if (validator) {
-        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes, datosDelUsuario });
+        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes, convertDataUser, date });
     } else {
         res.redirect('/login');
     }
@@ -97,5 +115,6 @@ export default {
     cart,
     contacto,
     productsViews,
-    categorys
+    categorys,
+    viewProductsById
 }

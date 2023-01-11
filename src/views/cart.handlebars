@@ -1,7 +1,8 @@
 <div>
    {{> navbar}}
 
-   <h1 class="s-padding">Bienvenido a tu carrito {{this.datosDelUsuario.name}}</h1>
+   <h1 class="s-padding">Bienvenido a tu carrito {{convertDataUser.name}}</h1>
+   <p class="s-padding">Fecha de tu pedido: {{date}}</p>
 
    <div class="detailContainer">
 
@@ -10,17 +11,17 @@
          {{#if productListCart}}
          <div id="cart-container-items" class="itemsCartList gridColumnFlow">
             {{#each productListCart}}
-            <div>
+            <div class="cartItem">
+               <li id="productIdFromCart" style="display: none;">{{this._id}}</li>
                <li>{{this.productTitle}}</li>
                <li>{{this.productPrice}}</li>
-               <button class="add-cart-button xs-padding">Borrar</button>
+               <button id="deleteProductFromCart" class="add-cart-button xs-padding">Borrar</button>
             </div>
             {{/each}}
          </div>
 
          <button id="buyItems">Enviar solicitud de compra</button>
          {{else}}
-
          <p>El carrito aún está vacío</p>
          {{/if}}
       </div>
@@ -29,23 +30,15 @@
          <h4>Tus Datos personales</h4>
          <div class="informationValues gridColumnFlow">
             <label>Name</label>
-            <p>{{this.name}}</p>
+            <p>{{convertDataUser/name}}</p>
          </div>
          <div class="informationValues gridColumnFlow">
             <label>Email</label>
-            <p>{{this.email}}</p>
-         </div>
-         <div class="informationValues gridColumnFlow">
-            <label>Age</label>
-            <p>{{this.age}}</p>
-         </div>
-         <div class="informationValues gridColumnFlow">
-            <label>Phone</label>
-            <p>{{this.phone}}</p>
+            <p>{{convertDataUser.email}}</p>
          </div>
          <div class="informationValues gridColumnFlow">
             <label>Address</label>
-            <p>{{this.address}}</p>
+            <p>{{convertDataUser.address}}</p>
          </div>
 
       </div>

@@ -7,7 +7,7 @@ export default class ProductosDao {
     }
 
     getById = (id) => {
-        return productsModel.find({_id:id})
+        return productsModel.find({_id:id}).lean()
     }
 
     getByCategory = (category) => {

@@ -23,7 +23,7 @@ export const ROUTES = {
             label: 'Contacto'
         },
         {
-            route: '/cart',
+            route: `/cart`,
             label: 'Carrito'
         }
     ],
@@ -37,4 +37,4 @@ export const ROUTES = {
             label: 'Productos'
         }
     ]
-}
+} 
