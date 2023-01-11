@@ -1,7 +1,7 @@
 <div>
    {{> navbar}}
 
-   <h1 class="s-padding">Bienvenido a tu carrito {{convertDataUser.name}}</h1>
+   <h1 class="s-padding">Bienvenido a tu carrito {{convertDataUser.name}}, tu numero de orden es: {{numerodeorden}}</h1>
    <p class="s-padding">Fecha de tu pedido: {{date}}</p>
 
    <div class="detailContainer">
@@ -12,6 +12,7 @@
          <div id="cart-container-items" class="itemsCartList gridColumnFlow">
             {{#each productListCart}}
             <div class="cartItem">
+               <li>x{{this.quantity}}</li>
                <li id="productIdFromCart" style="display: none;">{{this._id}}</li>
                <li>{{this.productTitle}}</li>
                <li>{{this.productPrice}}</li>

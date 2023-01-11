@@ -15,7 +15,8 @@ const schema = new mongoose.Schema({
             },
             productId: String,
             productTitle: String,
-            productPrice: String
+            productPrice: String,
+            productDescription: String
         }
     ]
 }) 

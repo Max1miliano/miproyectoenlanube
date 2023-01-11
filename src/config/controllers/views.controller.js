@@ -1,4 +1,4 @@
-import { productsServices, cartsService } from '../../services/index.js'
+import { productsServices, cartsService, ordersServices } from '../../services/index.js'
 import { loggers } from '../../utils.js'
 import { ROUTES } from '../../constants/routes.js'
 import { all } from 'axios';
@@ -79,20 +79,32 @@ const cart = async (req, res) => {
     const datosDelUsuario = req.user
 
     const userCartId = req.user?.cart._id
+
     const productsCartId = await cartsService.getCartById(userCartId)
+
     const productListCart = productsCartId?.products
 
-    const routes = ROUTES[req.user?.role];
+    console.log(productListCart);
+
+    const routes = ROUTES[req.user?.role]; 
+
     const convertDataUser = datosDelUsuario.toObject()
 
     const createdate = new Date()
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    console.log(createdate.toLocaleDateString('es-ES', options));
+
     const date = createdate.toLocaleDateString('es-ES', options)
 
     const validator = req.user
+
+    
+    const todaslasordenes = await ordersServices.totalOrders()
+    const numerodeorden = todaslasordenes.length + 1
+    // console.log(todaslasordenes.length + 1);
+
     if (validator) {
-        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes, convertDataUser, date });
+        res.render('cart', { validator, productListCart, mandofotodeperfil, css: '/css/main.css', routes: routes, convertDataUser, date, numerodeorden });
     } else {
         res.redirect('/login');
     }

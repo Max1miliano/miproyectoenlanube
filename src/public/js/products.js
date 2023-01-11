@@ -8,12 +8,15 @@ cardContainer.forEach(card => {
 
     const productTitle = cadaNodo[2].textContent
 
+    const productDescription = cadaNodo[3].textContent
+
     const productPrice = cadaNodo[4].textContent
 
     const productoElegido = {
         productId,
         productTitle,
-        productPrice
+        productPrice,
+        productDescription
     }
 
     const productButtonAddToCart = cadaNodo[5]
@@ -44,4 +47,22 @@ cardContainer.forEach(card => {
             })
         })
     })
+})
+
+
+const sumar = document.getElementById('agregar')
+const restar = document.getElementById('descontar')
+const inputvalue = document.getElementById('cantidad')
+var cantidad = 0
+const stock = document.getElementById('stock').textContent
+
+console.log(stock);
+
+sumar.addEventListener('click', () => {
+    cantidad++
+    inputvalue.innerHTML = cantidad
+})
+restar.addEventListener('click', () => {
+    cantidad--
+    inputvalue.innerHTML = cantidad
 })

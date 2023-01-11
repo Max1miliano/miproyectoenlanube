@@ -1,4 +1,4 @@
-import { cartsService } from "../../services/index.js";
+import { cartsService, ordersServices } from "../../services/index.js";
 import MailingService from "../../services/mailing.js";
 import twilio from "twilio";
 import config from "../config.js";
@@ -31,25 +31,63 @@ const generateOrder = async (req, res) => {
     const mailer = new MailingService();
 
     const userCartId = req.user.cart._id
-    const productsCartId = await cartsService.getCartById(userCartId)
+    const productsCartId = await cartsService.getCartById(userCartId) 
     const productListCart = productsCartId.products
+    
 
+    //FECHA Y HORA
+    const createdate = new Date()
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minutes: 'numeric' };
+    const date = createdate.toLocaleDateString('es-ES', options)
+    const hourDate = createdate.toLocaleTimeString('es-ES')
 
     var cadaElemento = ""
     productListCart.forEach(element => {
-        // cadaElemento += "<li>" + element._id + "</li>"
-        cadaElemento += `<li>${element.productId}</li></br>
-                        <li>${element.productTitle}</li></br>
-                        <li>${element.productPrice}</li></br>`
+        cadaElemento += `<li>Id: ${element.productId}</li></br>
+                        <li>Nombre ${element.productTitle}</li></br>
+                        <li>Descripcion ${element.productDescription}</li></br>
+                        <li>Cantidad ${element.quantity}</li></br>
+                        <li>Precio $${element.productPrice}</li></br>`
     });
 
-    let resultMail = await mailer.sendSimpleMail({
+    // let resultMail = await mailer.sendSimpleMail({ 
+    //     from: 'test',
+    //     to: adminMail,
+    //     subject: `Nuevo pedido de ${userInformation.name}`,
+    //     html: `<div>
+    //         <h1>Nuevo pedido</h1></br>
+    //         <h3>Estado de la orden: Generada</h3></br>
+    //         <h3>Fecha: ${date}</h3></br>
+    //         <h3>Hora: ${hourDate}</h3></br>
+    //         <h3>Nombre: ${userInformation.name}</h3></br>
+    //         <h3>Email: ${userInformation.email}</h3></br>
+    //         <h3>Direccion: ${userInformation.address}</h3></br>
+    //         <h3>Telefono: ${userInformation.phone}</h3>
+    //         <h1>Lista de productos:</h1>
+    //         <ul>${cadaElemento}</ul>
+    //         </div>`            })
+
+    const todaslasordenes = await ordersServices.totalOrders()
+    const numerodeorden = todaslasordenes.length + 1
+
+    const orderTo = {
+        userCartId: userCartId,
+        productos: productListCart,
+        orderNumber: numerodeorden
+    }
+    await ordersServices.create(orderTo)
+
+
+    let resultMail = await mailer.sendSimpleMail({ 
         from: 'test',
         to: adminMail,
         subject: `Nuevo pedido de ${userInformation.name}`,
         html: `<div>
             <h1>Nuevo pedido</h1></br>
+            <h3>Orden número: ${numerodeorden}</h3></br>
             <h3>Estado de la orden: Generada</h3></br>
+            <h3>Fecha: ${date}</h3></br>
+            <h3>Hora: ${hourDate}</h3></br>
             <h3>Nombre: ${userInformation.name}</h3></br>
             <h3>Email: ${userInformation.email}</h3></br>
             <h3>Direccion: ${userInformation.address}</h3></br>
@@ -61,7 +99,6 @@ const generateOrder = async (req, res) => {
     productsCartId.products = []
     
     await cartsService.update(userCartId, productsCartId)
-
 
     return res.send({ status: 'success', carritovacio: productsCartId })
 }

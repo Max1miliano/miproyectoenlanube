@@ -8,4 +8,14 @@
   <h1>{{prodobj/title}}</h1>
   <h2>Descripcion: {{prodobj/description}}</h2>
   <h2>Precio: ${{prodobj/price}}</h2>
+  <h2 id="stock" style="display: none;">{{prodobj/stock}}</h2>
+
+  <div id="contador">
+    <input id="agregar" type="button" value="+">
+    <p id="cantidad">0</p>
+    <input id="descontar" type="button" value="-">
+    <input id="enviarcantidad" type="submit" value="agregar al carrito">
+  </div>
 </div>
+
+<script src="/js/products.js"></script>
