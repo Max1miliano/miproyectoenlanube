@@ -52,11 +52,15 @@ const viewProductsById = async (req, res) => {
     const idParam = req.params.id
     const productById = await productsServices.getProductsById(idParam)
     const prodobj = productById[0]
-    console.log(productById);  
-    console.log(prodobj);    
 
+    
+    const userCartId = req.user?.cart._id
+    const productsCartId = await cartsService.getCartById(userCartId)
+    const productListCart = productsCartId?.products
+    console.log(productListCart);
+    
 
-    res.render('productDetail', { prodobj, css: '/css/main.css', mandofotodeperfil, routes: routes })
+    res.render('productDetail', { prodobj, css: '/css/main.css', mandofotodeperfil, routes: routes, productListCart })
 }
 const productsViews = async (req, res) => {
     const productList = await productsServices.getProducts()
@@ -83,8 +87,6 @@ const cart = async (req, res) => {
     const productsCartId = await cartsService.getCartById(userCartId)
 
     const productListCart = productsCartId?.products
-
-    console.log(productListCart);
 
     const routes = ROUTES[req.user?.role]; 
 

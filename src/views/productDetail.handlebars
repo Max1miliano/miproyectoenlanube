@@ -4,16 +4,17 @@
 
 </div>
 <div class="detailProductContainer">
-  <img src="{{prodobj/image}}" alt="">
-  <h1>{{prodobj/title}}</h1>
-  <h2>Descripcion: {{prodobj/description}}</h2>
-  <h2>Precio: ${{prodobj/price}}</h2>
+  <h1 id="idProduct" >{{prodobj/_id}}</h1>
+  <img id="imageProduct" src="{{prodobj/image}}" alt="">
+  <h1 id="titleProduct" >{{prodobj/title}}</h1>
+  <h2 id="descriptionProduct" >{{prodobj/description}}</h2>
+  <h2 id="priceProduct">{{prodobj/price}}</h2>
   <h2 id="stock" style="display: none;">{{prodobj/stock}}</h2>
 
   <div id="contador">
-    <input id="agregar" type="button" value="+">
+    <input id="agregar" type="button" value="+" onclick="increment()">
     <p id="cantidad">0</p>
-    <input id="descontar" type="button" value="-">
+    <input id="descontar" type="button" value="-" onclick="decrement()">
     <input id="enviarcantidad" type="submit" value="agregar al carrito">
   </div>
 </div>

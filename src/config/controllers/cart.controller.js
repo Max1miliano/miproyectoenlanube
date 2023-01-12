@@ -26,6 +26,13 @@ const updateCart = async (req, res) => {
     return res.send({ status: 'success', payload: elemento, carrito: productsCartId })
 }
 
+const updateCartWithQuantity = async (req, res) => {
+    const userCartId = req.user.cart._id
+    const productsCartId = await cartsService.getCartById(userCartId)
+    const productListCart = productsCartId?.products
+    console.log(productListCart);
+}
+
 const generateOrder = async (req, res) => {
     const userInformation = req.user
     const mailer = new MailingService();
@@ -44,10 +51,10 @@ const generateOrder = async (req, res) => {
     var cadaElemento = ""
     productListCart.forEach(element => {
         cadaElemento += `<li>Id: ${element.productId}</li></br>
-                        <li>Nombre ${element.productTitle}</li></br>
-                        <li>Descripcion ${element.productDescription}</li></br>
-                        <li>Cantidad ${element.quantity}</li></br>
-                        <li>Precio $${element.productPrice}</li></br>`
+                        <li>Nombre: ${element.productTitle}</li></br>
+                        <li>Descripcion: ${element.productDescription}</li></br>
+                        <li>Cantidad: ${element.quantity}</li></br>
+                        <li>Precio total: $${element.productPrice}</li></br>`
     });
 
     // let resultMail = await mailer.sendSimpleMail({ 
@@ -131,5 +138,6 @@ const deleteProductFromCart = async (req, res) => {
 export default {
     updateCart,
     generateOrder,
-    deleteProductFromCart
+    deleteProductFromCart,
+    updateCartWithQuantity
 }

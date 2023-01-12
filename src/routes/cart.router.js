@@ -3,7 +3,9 @@ import cartController from "../config/controllers/cart.controller.js";
 
 const router = Router()
 
-router.post('/cart', cartController.updateCart) 
+router.post('/cart', cartController.updateCart)
+
+router.put('/cart', cartController.updateCartWithQuantity)
 
 router.post('/cartBuy', cartController.generateOrder)
 
